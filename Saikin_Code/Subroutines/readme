@@ -1,0 +1,9 @@
+These subroutines should be included in the folder (or a linked folder) when running polarization_analysis.pro
+Not sure if all are needed, but definitely need 
+  fft_spec.pro
+  tdigital_filter.pro
+  trotate_to_fac.pro
+
+Need SPEDAS package
+  http://spedas.org/
+  http://spedas.org/wiki/index.php?title=Main_Page
