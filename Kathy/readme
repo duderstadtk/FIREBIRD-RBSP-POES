@@ -1,1 +1,98 @@
+Instructions – Running Modified EMIC Polarization Codes
+3 September 2019
+Environmental Setup 
+
+Data Folder 
+  Add a data folder (to home directory?)
+    ~/data 
+  This is also where rbsp files are automatically downloaded 
+    ~/data/rbsp/emfisis/Flight/RBSP-B/L3/2014/05/09
+  Download latest CDFLeapSeconds.txt file from 
+      https://cdf.gsfc.nasa.gov/html/CDFLeapSeconds.txt
+    and put in 
+      ~/data/mis 
+
+Running IDL
+
+Commands
+   idl – starts idl 
+  .rnew filename.pro (or just .r filename.pro)  -- run 
+  .c – continue after ‘stop’
+  exit – exit IDL
+  
+  Hard Stop for IDL   -- Ctrl+\   -- use if exit doesn’t work 
+
+Note: After aborting IDL by using Ctrl+\, you may find that your terminal is left in the wrong state. You can restore your terminal to the correct state by issuing one of the following UNIX commands
+   % reset      or   % stty echo -cbreak
+		Check to see if still running
+			ps 
+ 			ps -u username
+
+
+Anthony’s Polarization Code 
+Modified Version
+    polarization_analysis_KAD_09May14.pro
+    
+For Anthony's code polarization_analysis.pro, need to have the functions
+  fft_spec.pro
+  tdigital_filter.pro
+  trotate_to_fac.pro
+
+May also need... 
+  thm_fac_matrix_make.pro
+
+Need SPEDAS package
+  http://spedas.org/
+  http://spedas.org/wiki/index.php?title=Main_Page
+
+
+Run Commands 
+  IDL
+ .rnew polarization_analysis_KADfinal.pro
+
+POLARIZATION_ANALYSIS
+(at STOPS, type '.c' to get code to continue) 
+exit (leave idl) 
+
+
+
+
+May need to set ‘dot’ files in home directory… here are the commands in mine… 
+
+------------------------------------------------------------------------
+.idlenv  (in home directory) 
+
+IDL_DIR=/Applications/exelis/idl82; export IDL_DIR
+IDL_PATH=\+$IDL_DIR/lib:+/Applications/exelis/idl82/external; export IDL_PATH
+IDL_PATH=\+$IDL_DIR/lib:+/external; export IDL_PATH
+IDL_STARTUP=/Users/katharineduderstadt/idl/idlstartup; export IDL_STARTUP
+
+#  add paths for spedas
+
+IDL_PATH=/Applications/exelis/idl82/lib; export IDL_PATH
+IDL_PATH=/Applications/exelis/idl82/SPEDAS; export IDL_PATH
+IDL_PATH=/Applications/exelis/idl82/SPEDAS/spedas_3_1/idl; export IDL_PATH
+IDL_PATH=/Applications/exelis/idl82/SPEDAS/spedas_3_1/idl/general/tplot; export IDL_PATH
+
+IDL_PATH=/Applications/exelis/idl82/SPEDAS/spedas_3_1/idl/spedas_gui; export IDL_PATH
+
+---------------------------------------------------------------------------
+idlstartup  (in a folder titled idl in home directory…)
+
+print, 'Hi, Kathy!'
+!PATH = Expand_Path('~/idl/lib')  + ';' + !PATH
+
+------------------------------------------------------------------------
+.bashrc
+
+export PATH="$PATH:/Applications/exelis/idl82/bin"
+. /Applications/exelis/idl82/bin/idl_setup.bash
+source ~/.idlenv
+
+export EXELIS_DIR=/Applications/exelis
+
+export IDL_LMGRD_LICENSE_FILE=/Applications/exelis/license
+export LM_LICENSE_FILE=/Applications/exelis/license/license.dat
+
+
 
